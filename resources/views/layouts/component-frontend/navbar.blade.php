@@ -15,7 +15,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="{{ route('home')}}" class="active">Home</a></li>
-                      <li class="scroll-to-section"><a href="#courses">Materi</a></li>
+                      <li class="scroll-to-section"><a href="#courses">jurusan</a></li>
                       @if(Auth::check() && (Auth::user()->role === 'siswa'))
                       <li class="scroll-to-section"><a href="{{ route('user.quizz')}}">Quiz</a></li>
                       <li class="scroll-to-section"><a href="{{ route('user.tugas.index')}}">Tugas</a></li>

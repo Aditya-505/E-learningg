@@ -2,8 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JawabanQuiz;
-use App\Models\Kelas;
-use App\Models\Materi;
+use App\Models\jurusan;
 use App\Models\NilaiQuiz;
 use App\Models\Quiz;
 use App\Models\Tugas;
@@ -15,21 +14,20 @@ class FrontController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil semua kelas untuk ditampilkan di filter
-        $kelas = Kelas::all();
+        $allJurusan = jurusan::all();
+        $jurusan    = jurusan::query();
 
         $quiz  = Quiz::all();
         $query = User::where('role', 'guru');
         $guru  = $query->get();
 
-        // Ambil materi berdasarkan kelas yang dipilih
         if ($request->has('search')) {
-            $materi = Materi::where('id_kelas', $request->get('search'))->get();
-        } else {
-            $materi = Materi::all(); // Ambil semua materi jika tidak ada filter
+            $jurusan = $jurusan->where('id', $request->get('search'));
         }
 
-        return view('welcome', compact('materi', 'kelas', 'guru', 'quiz'));
+        $jurusan = $jurusan->get();
+
+        return view('welcome', compact('allJurusan', 'jurusan', 'guru', 'quiz'));
     }
     public function quizz(Request $request)
     {

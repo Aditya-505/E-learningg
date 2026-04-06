@@ -68,7 +68,8 @@ class JurusanController extends Controller
      */
     public function show($id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+        return view('jurusan', compact('jurusan'));
     }
 
     /**

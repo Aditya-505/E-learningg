@@ -138,8 +138,8 @@ https://templatemo.com/tm-586-scholar
       <div class="row">
         <div class="col-lg-12 text-center">
           <div class="section-heading">
-            <h6>Latest Courses</h6>
-            <h2>Latest Courses</h2>
+            <h6>Jurusan</h6>
+            <h2>Jurusan SMK Assalaam</h2>
           </div>
         </div>
       </div>
@@ -147,21 +147,22 @@ https://templatemo.com/tm-586-scholar
         <li>
           <a href="{{ route('welcome')}}">Semua</a>
         </li>
-    @foreach($kelas as $data)
+    @foreach($allJurusan as $data)
     <li>
-        <a class="filter-btn"  href="{{ route('welcome', ['search' => $data->id]) }}">{{$data->kelas}}</a>
+        <a class="filter-btn"  href="{{ route('welcome', ['search' => $data->id]) }}">{{$data->jurusan}}</a>
     </li>
     @endforeach
 </ul>
 
 <div class="row event_box">
-    @foreach($materi as $data)
+    @foreach($jurusan as $data)
     <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
         <div class="events_item">
             <div class="thumb">
-                <a href="{{ route('isi', $data->id) }}"><div class="card">
+                <a href="{{ route('jurusan.show', $data->id) }}">
+                <div class="card">
                   @if($data->foto)
-                  <img src="{{ asset('/storage/materi/' . $data->foto) }}" class="materi-image" alt="{{ $data->judul }}">
+                  <img src="{{ asset('/storage/jurusan/' . $data->foto) }}" class="materi-image" alt="{{ $data->jurusan }}">
                   @else
                   <br><br><br><br><br><br>
                   <center>
@@ -170,16 +171,18 @@ https://templatemo.com/tm-586-scholar
                   <br><br><br><br>
                   <br>
                   @endif
-                </div></a>
+                </div>
+                </a>
                 <span class="category">
-                    {{ $data->mapel->nama_mapel }}
+                    Jurusan
                 </span>
             </div>
             <div class="down-content">
                 <span class="author">
-                    {{ $data->kelas->kelas }}
+                    Program Keahlian
                 </span>
-                <h4>{{ $data->judul }}</h4>
+                <h4>{{ $data->jurusan }}</h4>
+                <p>{{ \Illuminate\Support\Str::limit($data->tentang_jurusan, 90) }}</p>
             </div>
         </div>
     </div>
