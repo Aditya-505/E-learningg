@@ -19,7 +19,13 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         $query = User::where('role', 'siswa');
-        $tugas = Tugas::where('id_kelas', auth()->user()->id_kelas)->get();
+        $currentUser = auth()->user();
+        $tugas = collect();
+
+        if ($currentUser?->id_kelas) {
+            $tugas = Tugas::where('id_kelas', $currentUser->id_kelas)->get();
+        }
+
         $siswa = $query->get();
 
         // Tidak perlu munculkan alert warning di sini, karena tidak sedang menghapus

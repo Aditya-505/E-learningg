@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -33,25 +34,77 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        $user = User::with(['kelas', 'tahunAjaran'])
+            ->where('email', $validated['email'])
+            ->first();
+
+        if (! $user || ! Hash::check($validated['password'], $user->password)) {
             return response()->json(['message' => 'Email atau password salah'], 401);
         }
 
-        $token = $user->createToken('token')->plainTextToken;
+        if (! $user->isSiswa()) {
+            throw ValidationException::withMessages([
+                'email' => ['Login mobile hanya untuk akun siswa.'],
+            ]);
+        }
+
+        $user->tokens()->delete();
+
+        $token = $user->createToken('siswa-mobile')->plainTextToken;
 
         return response()->json([
             'message' => 'Login berhasil',
-            'user'    => $user,
+            'token_type' => 'Bearer',
             'token'   => $token,
+            'user'    => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+                'foto' => $user->foto,
+                'id_kelas' => $user->id_kelas,
+                'id_tahun_ajaran' => $user->id_tahun_ajaran,
+                'kelas' => $user->kelas ? [
+                    'id' => $user->kelas->id,
+                    'kelas' => $user->kelas->kelas,
+                ] : null,
+                'tahun_ajaran' => $user->tahunAjaran ? [
+                    'id' => $user->tahunAjaran->id,
+                    'nama' => $user->tahunAjaran->nama,
+                    'is_active' => (bool) $user->tahunAjaran->is_active,
+                ] : null,
+            ],
         ]);
     }
 
     public function user(Request $request)
     {
+        $user = $request->user()->loadMissing(['kelas', 'tahunAjaran']);
+
         return response()->json([
-            'user' => $request->user(),
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+                'foto' => $user->foto,
+                'id_kelas' => $user->id_kelas,
+                'id_tahun_ajaran' => $user->id_tahun_ajaran,
+                'kelas' => $user->kelas ? [
+                    'id' => $user->kelas->id,
+                    'kelas' => $user->kelas->kelas,
+                ] : null,
+                'tahun_ajaran' => $user->tahunAjaran ? [
+                    'id' => $user->tahunAjaran->id,
+                    'nama' => $user->tahunAjaran->nama,
+                    'is_active' => (bool) $user->tahunAjaran->is_active,
+                ] : null,
+            ],
         ]);
     }
 

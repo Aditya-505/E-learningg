@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <h3>Kelas {{ $kelas->kelas }} ({{ $kelas->tahunAjaran->nama }})</h3>
+  <h3>Kelas {{ $kelas->kelas }} ({{ $kelas->tahunAjaran->nama ?? '-' }})</h3>
   <table class="table table-bordered">
     <thead><tr><th>#</th><th>Nama</th><th>Email</th></tr></thead>
     <tbody>

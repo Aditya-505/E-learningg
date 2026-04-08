@@ -10,7 +10,7 @@
         <div class="form-check">
             <input type="checkbox" name="kelas_id[]" value="{{ $k->id }}"
                 {{ $guru->kelasDiampu->contains($k->id) ? 'checked' : '' }}>
-            {{ $k->kelas }} - {{ $k->jurusan }}
+            {{ $k->kelas }}
         </div>
     @endforeach
     <button type="submit" class="btn btn-primary mt-3">Simpan</button>

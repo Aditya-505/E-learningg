@@ -12,16 +12,23 @@ class Kelas extends Model
     public $timestamps = true;
 
     public function users()
-{
-    return $this->hasMany(User::class, 'id_kelas');
-}
-public function tahunAjaran()
-{
-    return $this->belongsTo(TahunAjaran::class, 'id_tahun_ajaran');
-}
-public function guru()
-{
-    return $this->belongsToMany(User::class, 'guru_kelas', 'kelas_id', 'user_id');
-}
+    {
+        return $this->hasMany(User::class, 'id_kelas');
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(User::class, 'id_kelas')->where('role', 'siswa');
+    }
+
+    public function tahunAjaran()
+    {
+        return $this->belongsTo(TahunAjaran::class, 'id_tahun_ajaran');
+    }
+
+    public function guru()
+    {
+        return $this->belongsToMany(User::class, 'guru_kelas', 'kelas_id', 'user_id');
+    }
 
 }

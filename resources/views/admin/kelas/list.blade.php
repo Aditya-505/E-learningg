@@ -10,7 +10,7 @@
             <h5>{{ $k->kelas }}</h5>
             <p>Tahun Ajaran:{{ $k->tahunAjaran?->nama ?? '-' }}</p>
 
-            @if(auth()->user()->id_kelas == $k->id)
+            @if(optional(auth()->user())->id_kelas == $k->id)
               <span class="badge bg-success">Sudah Bergabung</span>
             @else
               <form action="{{ route('kelas.join', $k->id) }}" method="POST">

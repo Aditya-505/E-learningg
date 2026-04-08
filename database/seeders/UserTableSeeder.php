@@ -2,34 +2,44 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        DB::table('users')->delete(); 
+        $users = [
+            [
+                'name' => 'Admin ESA',
+                'email' => 'admin@gmail.com',
+                'password' => 'password',
+                'role' => 'admin',
+            ],
+            [
+                'name' => 'Guru ESA',
+                'email' => 'guru@gmail.com',
+                'password' => 'guru1234',
+                'role' => 'guru',
+            ],
+            [
+                'name' => 'Siswa ESA',
+                'email' => 'siswa@gmail.com',
+                'password' => 'siswa1234',
+                'role' => 'siswa',
+            ],
+        ];
 
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
-            'role' => 'admin',
-        ]);
-
-        User::create([
-            'name' => 'guru',
-            'email' => 'guru@gmail.com',
-            'password' => bcrypt('guru1234'),
-            'role' => 'guru',
-        ]);
+        foreach ($users as $user) {
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                [
+                    'name' => $user['name'],
+                    'password' => Hash::make($user['password']),
+                    'role' => $user['role'],
+                ]
+            );
+        }
     }
 }

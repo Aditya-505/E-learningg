@@ -139,7 +139,6 @@ https://templatemo.com/tm-586-scholar
         <div class="col-lg-12 text-center">
           <div class="section-heading">
             <h6>Jurusan</h6>
-            <h2>Jurusan SMK Assalaam</h2>
           </div>
         </div>
       </div>

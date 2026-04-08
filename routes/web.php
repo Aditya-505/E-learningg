@@ -33,26 +33,30 @@ Route::get('/welcome', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('user{id}', [App\Http\Controllers\FrontController::class, 'profile'])->name('profile');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('user{id}', [App\Http\Controllers\FrontController::class, 'profile'])->middleware('auth')->name('profile');
 
 
 Route::get('materi{id}', [App\Http\Controllers\FrontController::class, 'isi'])->name('isi');
 
-Route::resource('siswa', SiswaController::class);
-Route::resource('mapel', MapelController::class);
-Route::resource('quiz', QuizController::class);
-Route::resource('tugas', TugasController::class);
-Route::resource('materi', MateriController::class); 
-Route::resource('kelas', KelasController::class);
-Route::resource('jurusan', JurusanController::class);   
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('siswa', SiswaController::class);
+    Route::resource('mapel', MapelController::class);
+    Route::resource('kelas', KelasController::class)->except(['show']);
+    Route::resource('jurusan', JurusanController::class);
+    Route::resource('tahun_ajaran', TahunAjaranController::class);
+    Route::post('tahun-ajaran/{id}/aktifkan', [TahunAjaranController::class, 'setAktif'])->name('tahun_ajaran.setAktif');
+});
 
-Route::resource('tahun_ajaran', TahunAjaranController::class)->middleware('auth'); 
-Route::post('tahun-ajaran/{id}/aktifkan', [TahunAjaranController::class, 'setAktif'])->name('tahun_ajaran.setAktif');
+Route::middleware(['auth', 'role:guru,admin'])->group(function () {
+    Route::resource('quiz', QuizController::class);
+    Route::resource('tugas', TugasController::class);
+    Route::resource('materi', MateriController::class);
+});
 
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
-    Route::get('/kelas', [KelasController::class, 'list'])->name('kelas.list');
+    Route::get('/kelas/tersedia', [KelasController::class, 'list'])->name('kelas.list');
     Route::post('/kelas/{kelas}/join', [KelasController::class, 'join'])->name('kelas.join');
 });
 
@@ -85,24 +89,9 @@ Route::get('/quizz/{kode}/kerjakan', [FrontController::class, 'kerjakan'])->name
 // Admin only
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('guru', GuruController::class);
-    Route::resource('mapel', MapelController::class);
-    Route::resource('kelas', KelasController::class);
     Route::get('guru/{id}/assign-kelas', [GuruController::class, 'showAssignKelasForm'])->name('guru.assignKelasForm');
-Route::post('guru/{id}/assign-kelas', [GuruController::class, 'assignKelas'])->name('guru.assignKelas');
-
+    Route::post('guru/{id}/assign-kelas', [GuruController::class, 'assignKelas'])->name('guru.assignKelas');
 });
 
-
-Route::middleware(['auth', 'role:guru'])->group(function () {
-    Route::resource('quiz', QuizController::class);
-    Route::resource('tugas', TugasController::class);
-    Route::resource('materi', MateriController::class);
-});
-
-// Siswa
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [FrontController::class, 'index'])->name('welcome');
 

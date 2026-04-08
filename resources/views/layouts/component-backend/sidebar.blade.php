@@ -1,4 +1,5 @@
 <aside class="sidebar-nav-wrapper">
+    @php($currentUser = Auth::user())
     <div class="navbar-logo">
         <a href="index.html">
             <img src="{{ asset('assets/images/logos/esa.png') }}" alt="" style="width: 100px">
@@ -6,7 +7,8 @@
     </div>
     <nav class="sidebar-nav">
         <ul>
-            @if (Auth::user()->role === 'admin')
+            @auth
+            @if ($currentUser?->role === 'admin')
                 <li class="nav-item">
                     <a href="{{ route('home') }}">
                         <span class="icon">
@@ -102,7 +104,7 @@
                     </a>
                 </li>
             @endif
-            @if (Auth::user()->role === 'guru')
+            @if ($currentUser?->role === 'guru')
                 <li class="nav-item">
                     <a href="{{ url('home') }}">
                         <span class="icon">
@@ -166,6 +168,7 @@
                     </a>
                 </li>
             @endif
+            @endauth
             <span class="divider">
                 <hr />
             </span>
