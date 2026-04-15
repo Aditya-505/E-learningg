@@ -7,7 +7,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="title">
-                            <h2>Edit Data Materi</h2>
+                            <h2>Edit Data jurusan</h2>
                         </div>
                     </div>
                     <!-- end col -->
@@ -19,7 +19,7 @@
                                         <a href="#0">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Data Materi
+                                        Data jurusan
                                     </li>
                                 </ol>
                             </nav>
@@ -40,7 +40,7 @@
                             @csrf
                             @method('PUT')
                             <div class="card-style mb-30">
-                                <h6 class="mb-25">Materi</h6>
+                                <h6 class="mb-25">jurusan</h6>
                                 <div class="input-style-1">
                                     <label>Jurusan</label>
                                     <input type="text" placeholder="Jurusan" name="jurusan" value="{{ $jurusan->jurusan }}" required />

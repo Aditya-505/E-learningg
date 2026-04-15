@@ -1,8 +1,12 @@
 <aside class="sidebar-nav-wrapper">
     @php($currentUser = Auth::user())
     <div class="navbar-logo">
-        <a href="index.html">
-            <img src="{{ asset('assets/images/logos/esa.png') }}" alt="" style="width: 100px">
+        <a href="{{ route('home') }}" class="esa-brand-mark">
+            <img src="{{ asset('assets/images/logos/esa.png') }}" alt="ESA Logo" style="width: 100px">
+            <span>
+                <strong>ESA</strong>
+                <small>E-Learning SMK Assalaam</small>
+            </span>
         </a>
     </div>
     <nav class="sidebar-nav">

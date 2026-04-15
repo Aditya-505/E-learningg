@@ -38,12 +38,13 @@ Route::get('user{id}', [App\Http\Controllers\FrontController::class, 'profile'])
 
 
 Route::get('materi{id}', [App\Http\Controllers\FrontController::class, 'isi'])->name('isi');
+Route::get('/jurusan/{id}', [JurusanController::class, 'show'])->name('jurusan.show');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('siswa', SiswaController::class);
     Route::resource('mapel', MapelController::class);
     Route::resource('kelas', KelasController::class)->except(['show']);
-    Route::resource('jurusan', JurusanController::class);
+    Route::resource('jurusan', JurusanController::class)->except(['show']);
     Route::resource('tahun_ajaran', TahunAjaranController::class);
     Route::post('tahun-ajaran/{id}/aktifkan', [TahunAjaranController::class, 'setAktif'])->name('tahun_ajaran.setAktif');
 });

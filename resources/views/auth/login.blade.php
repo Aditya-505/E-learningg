@@ -1,66 +1,90 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/esa-theme.css') }}" />
 </head>
 
-<body>
-    <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
-        <div class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center" style="background-color: #EBD9FF;">
-
-            <div class="d-flex align-items-center justify-content-center w-100">
-                <div class="row justify-content-center w-100">
-                    <div class="col-md-8 col-lg-6 col-xxl-3">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets/images/logos/esa.png') }}" style="width: 140px; height: 140px;">
+<body class="esa-theme">
+    <div class="page-wrapper" id="main-wrapper">
+        <div class="position-relative overflow-hidden min-vh-100 d-flex align-items-center justify-content-center esa-auth-bg">
+            <div class="container py-5">
+                <div class="row justify-content-center align-items-center g-4">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <div class="esa-auth-copy">
+                            <h1>Masuk ke ESA E-Learning</h1>
+                            <ul class="esa-auth-points">
+                                <li>Akses materi, tugas, dan quiz lebih cepat</li>
+                                <li>Tampilan modern dan konsisten</li>
+                                <li>Siap dipakai admin, guru, dan siswa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-5 col-xxl-4">
+                        <div class="card border-0 shadow-lg esa-auth-card">
+                            <div class="card-body p-4 p-md-5">
+                                <a href="{{ route('welcome') }}" class="text-nowrap logo-img text-center d-block py-2 w-100">
+                                    <img src="{{ asset('assets/images/logos/esa.png') }}" style="width: 132px; height: 132px;" alt="ESA Logo">
                                 </a>
+
+                                <div class="text-center mb-4">
+                                    <h3 class="mb-2 fw-bold">Selamat Datang</h3>
+                                    <p class="text-muted mb-0">Masuk dengan akun yang terdaftar di sistem e-learning.</p>
+                                </div>
 
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email') }}" required autocomplete="email"
-                                            autofocus>
+                                        <label class="form-label fw-semibold">Email</label>
+                                        <input
+                                            type="email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            name="email"
+                                            value="{{ old('email') }}"
+                                            required
+                                            autocomplete="email"
+                                            autofocus
+                                            placeholder="Masukkan email">
                                         @error('email')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="mb-4">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password" placeholder="Password">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Password</label>
+                                        <input
+                                            type="password"
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            name="password"
+                                            required
+                                            autocomplete="current-password"
+                                            placeholder="Masukkan password">
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback d-block" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
                                         <div class="form-check">
-                                            <input class="form-check-input primary" type="checkbox" value=""
-                                                id="flexCheckChecked" checked>
-                                            <label class="form-check-label text-dark" for="flexCheckChecked">
-                                                Remeber this Device
+                                            <input class="form-check-input primary" type="checkbox" value="1" id="remember" name="remember">
+                                            <label class="form-check-label text-dark" for="remember">
+                                                Ingat perangkat ini
                                             </label>
                                         </div>
-                                        <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
+                                        @if (Route::has('password.request'))
+                                            <a class="text-primary fw-bold" href="{{ route('password.request') }}">Lupa password?</a>
+                                        @endif
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign
-                                        In</button>
-
+                                    <button type="submit" class="btn btn-primary w-100 py-3 fs-5 mb-3">Sign In</button>
+                                    <div class="text-center">
+                                        <a href="{{ route('welcome') }}" class="text-decoration-none fw-semibold">Kembali ke beranda</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -71,8 +95,6 @@
     </div>
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- solar icons -->
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,482 @@
+:root {
+  --esa-primary: #1565c0;
+  --esa-primary-soft: #e3f2fd;
+  --esa-primary-deep: #0f4a96;
+  --esa-ink: #16324f;
+  --esa-muted: #62748a;
+  --esa-line: #dfe8f3;
+  --esa-shadow: 0 18px 40px rgba(17, 56, 100, 0.10);
+  --esa-shadow-soft: 0 10px 24px rgba(21, 101, 192, 0.08);
+  --esa-radius-lg: 24px;
+  --esa-radius-sm: 12px;
+}
+
+body.esa-theme {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: var(--esa-ink);
+  background:
+    radial-gradient(circle at top left, rgba(66, 165, 245, 0.18), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+}
+
+.esa-theme h1,
+.esa-theme h2,
+.esa-theme h3,
+.esa-theme h4,
+.esa-theme h5,
+.esa-theme h6 {
+  color: var(--esa-ink);
+  letter-spacing: -0.02em;
+}
+
+.esa-theme .card,
+.esa-theme .card-style,
+.esa-theme .table-wrapper,
+.esa-theme .single-profile,
+.esa-theme .main-banner,
+.esa-theme .service-item,
+.esa-theme .item,
+.esa-theme .contact-us,
+.esa-theme .events_item,
+.esa-theme .categories .item,
+.esa-theme .courses .item,
+.esa-theme .contact-us .contact-us-content {
+  border: 1px solid var(--esa-line);
+  border-radius: var(--esa-radius-lg);
+  box-shadow: var(--esa-shadow-soft);
+}
+
+.esa-theme .btn,
+.esa-theme .main-btn,
+.esa-theme button,
+.esa-theme input[type="submit"] {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.esa-theme .btn-primary,
+.esa-theme .main-btn.primary-btn,
+.esa-theme .filled-button,
+.esa-theme .section-heading .main-button a {
+  background: linear-gradient(135deg, var(--esa-primary) 0%, #42a5f5 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(21, 101, 192, 0.20);
+}
+
+.esa-theme .btn-primary:hover,
+.esa-theme .main-btn.primary-btn:hover,
+.esa-theme .section-heading .main-button a:hover {
+  background: linear-gradient(135deg, var(--esa-primary-deep) 0%, var(--esa-primary) 100%);
+  color: #fff;
+}
+
+.esa-theme input,
+.esa-theme select,
+.esa-theme textarea,
+.esa-theme .form-control {
+  border: 1px solid var(--esa-line);
+  border-radius: var(--esa-radius-sm);
+  background: #fbfdff;
+  color: var(--esa-ink);
+  min-height: 48px;
+}
+
+.esa-theme textarea {
+  min-height: 120px;
+}
+
+.esa-theme input:focus,
+.esa-theme select:focus,
+.esa-theme textarea:focus,
+.esa-theme .form-control:focus {
+  border-color: rgba(21, 101, 192, 0.48);
+  box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.10);
+}
+
+.esa-theme a {
+  color: var(--esa-primary);
+}
+
+.esa-theme .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--esa-ink);
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+.esa-theme .table thead th {
+  border: 0;
+  color: var(--esa-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0 16px 8px;
+  text-transform: uppercase;
+}
+
+.esa-theme .table tbody tr {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--esa-shadow-soft);
+}
+
+.esa-theme .table tbody td {
+  border-top: 1px solid var(--esa-line);
+  border-bottom: 1px solid var(--esa-line);
+  padding: 18px 16px;
+  vertical-align: middle;
+}
+
+.esa-theme .table tbody td:first-child {
+  border-left: 1px solid var(--esa-line);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.esa-theme .table tbody td:last-child {
+  border-right: 1px solid var(--esa-line);
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.esa-theme .table img {
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.esa-theme .dropdown-menu {
+  border: 1px solid var(--esa-line);
+  border-radius: 16px;
+  box-shadow: var(--esa-shadow);
+}
+
+.esa-theme .dropdown-item {
+  border-radius: 10px;
+  margin: 4px 8px;
+  width: auto;
+}
+
+.esa-theme .dropdown-item:hover {
+  background: var(--esa-primary-soft);
+  color: var(--esa-primary-deep);
+}
+
+.esa-backend .sidebar-nav-wrapper {
+  background: linear-gradient(180deg, #0f2742 0%, #143f74 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 18px 0 40px rgba(9, 33, 63, 0.18);
+}
+
+.esa-brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.esa-brand-mark span {
+  display: flex;
+  flex-direction: column;
+}
+
+.esa-brand-mark strong {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.esa-brand-mark small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.esa-backend .sidebar-nav ul .nav-item > a {
+  margin: 6px 12px;
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.esa-backend .sidebar-nav ul .nav-item > a:hover,
+.esa-backend .sidebar-nav ul .nav-item.active > a,
+.esa-backend .sidebar-nav ul .nav-item > a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.esa-backend .header {
+  margin: 18px 18px 0;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  border-radius: 22px;
+  box-shadow: var(--esa-shadow-soft);
+}
+
+.esa-backend .main-wrapper {
+  padding-bottom: 36px;
+}
+
+.esa-backend .card-style {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.esa-backend .profile-box .image img,
+.esa-backend .author-info .image img {
+  border-radius: 50%;
+  border: 3px solid rgba(21, 101, 192, 0.12);
+  object-fit: cover;
+}
+
+.esa-frontend .header-area {
+  background: linear-gradient(135deg, #1565c0 0%, #1e88e5 55%, #42a5f5 100%);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 34px rgba(21, 101, 192, 0.20);
+}
+
+.esa-frontend .header-area .main-nav {
+  min-height: 88px;
+  padding: 14px 0;
+}
+
+.esa-site-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.esa-site-logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--esa-primary) 0%, #42a5f5 100%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.esa-site-logo__text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 150px;
+}
+
+.esa-frontend .header-area .main-nav .nav {
+  align-items: center;
+  gap: 8px;
+}
+
+.esa-frontend .header-area .main-nav .nav li a {
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  padding: 10px 18px;
+}
+
+.esa-frontend .header-area .main-nav .nav li a:hover,
+.esa-frontend .header-area .main-nav .nav li a.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.esa-frontend .header-area .main-nav .nav li a.esa-nav-button {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.esa-frontend .header-area .main-nav .nav li a.esa-nav-button:hover {
+  background: #fff;
+  color: var(--esa-primary);
+}
+
+.esa-frontend .header-area .main-nav .nav li a.esa-login-link {
+  background: #fff;
+  color: var(--esa-primary);
+  box-shadow: 0 14px 24px rgba(12, 58, 114, 0.18);
+}
+
+.esa-frontend .header-area .main-nav .nav li a.esa-login-link:hover {
+  background: #f6fbff;
+  color: var(--esa-primary-deep);
+}
+
+.esa-frontend .main-banner {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 30%),
+    linear-gradient(135deg, #0f4a96 0%, #1565c0 50%, #42a5f5 100%);
+  overflow: hidden;
+}
+
+.esa-frontend .service-item,
+.esa-frontend .events_item,
+.esa-frontend .categories .item,
+.esa-frontend .courses .item,
+.esa-frontend .team-member,
+.esa-frontend .contact-us .contact-us-content {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.esa-frontend .section-heading h6,
+.esa-frontend .section-title h2 {
+  color: var(--esa-primary);
+  font-weight: 800;
+}
+
+.esa-frontend .event_filter {
+  margin-bottom: 34px;
+}
+
+.esa-frontend .event_filter li a {
+  border-radius: 999px;
+  border: 1px solid var(--esa-line);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--esa-ink);
+  box-shadow: var(--esa-shadow-soft);
+}
+
+.esa-frontend .event_filter li a:hover,
+.esa-frontend .event_filter li a.is_active {
+  background: linear-gradient(135deg, var(--esa-primary) 0%, #42a5f5 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.esa-frontend .events_item .down-content p {
+  color: var(--esa-muted);
+}
+
+.esa-frontend .team.section,
+.esa-frontend .courses.section {
+  position: relative;
+}
+
+.esa-frontend .team.section::before,
+.esa-frontend .courses.section::before {
+  content: "";
+  position: absolute;
+  inset: 30px 0 auto;
+  height: calc(100% - 60px);
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.46);
+  z-index: -1;
+}
+
+.esa-frontend .team .section-title {
+  margin-bottom: 12px;
+}
+
+.esa-frontend .team-member .main-content h4 {
+  margin-bottom: 0;
+}
+
+.esa-frontend .scroll-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.esa-frontend footer {
+  background: linear-gradient(135deg, #0f2742 0%, #143f74 100%);
+}
+
+.esa-frontend footer p,
+.esa-frontend footer a {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.esa-auth-bg {
+  background:
+    radial-gradient(circle at top left, rgba(66, 165, 245, 0.24), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(21, 101, 192, 0.18), transparent 22%),
+    linear-gradient(135deg, #eef5fd 0%, #dfefff 100%);
+}
+
+.esa-auth-card {
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.esa-auth-copy {
+  padding: 36px;
+}
+
+.esa-auth-copy h1 {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+
+.esa-auth-copy p {
+  color: var(--esa-muted);
+  font-size: 17px;
+  margin-bottom: 22px;
+}
+
+.esa-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: rgba(21, 101, 192, 0.10);
+  color: var(--esa-primary);
+  font-weight: 700;
+}
+
+.esa-auth-points {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--esa-ink);
+}
+
+.esa-auth-points li {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 991px) {
+  .esa-backend .header {
+    margin: 12px 12px 0;
+    border-radius: 18px;
+  }
+
+  .esa-site-logo__text {
+    display: none;
+  }
+
+  .esa-frontend .header-area .main-nav .nav li a {
+    color: var(--esa-ink);
+  }
+
+  .esa-frontend .header-area .main-nav .nav li a.esa-login-link,
+  .esa-frontend .header-area .main-nav .nav li a.esa-nav-button {
+    background: rgba(21, 101, 192, 0.08);
+    color: var(--esa-primary);
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .esa-frontend .header-area .main-nav {
+    min-height: 78px;
+  }
+
+  .esa-frontend .team.section::before,
+  .esa-frontend .courses.section::before {
+    inset: 18px 0 auto;
+    height: calc(100% - 36px);
+    border-radius: 24px;
+  }
+}
